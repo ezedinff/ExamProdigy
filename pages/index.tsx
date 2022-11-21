@@ -5,14 +5,14 @@ import { Suspense, useEffect, useState } from 'react';
 
 
 const HomePage = ({session}: any) => {
-  const router = useRouter();
+  // const router = useRouter();
 
-  useEffect(() => {
-    if (session) {
-      console.log(session);
-      router.push('/exams');
-    }
-  }, [router, session]);
+  // useEffect(() => {
+  //   if (session) {
+  //     console.log(session);
+  //     router.push('/exams');
+  //   }
+  // }, [router, session]);
 
   
   return (
@@ -22,15 +22,15 @@ const HomePage = ({session}: any) => {
         <title>Home | Exam Prep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="flex flex-col justify-center w-full flex-1 overflow-hidden scroll-hidden h-full">
-          <div className="flex flex-col justify-center w-full flex-1 md:px-20 lg:px-30 xl:px-40 2xl:px-60 xs:px-30 overflow-hidden scroll-hidden h-full">
-            <h1 className="text-6xl font-bold sm:text-8xl xs:text-2xl text-teal-500">
+      <div className="flex flex-col justify-center w-full flex-1 h-full">
+          <div className="flex flex-col justify-center w-full md:px-20 overflow-hidden scroll-hidden h-full relative" style={{padding: "0 16px", top: "-5rem"}}>
+            <h1 className="text-4xl font-bold sm:text-8xl  md:px-32 xs:text-2xl text-teal-500 px:10 ">
               Exam Prep
             </h1>
-            <p className="mt-3 text-2xl break-words md:w-1/2 sm:text-3xl xs:w-full lg:w-3/4 text-gray-300">
+            <p className="mt-3 text-2xl break-words md:px-32 md:w-2/3 sm:text-3xl xs:w-full text-gray-400">
               Practice for your exams with our free questions and explanations. The questions are curated from the best sources and are updated regularly.
             </p>
-            <div className="flex justify-start md:w-1/2 xs:w-full lg:w-3/4 z-10">
+            <div className="flex justify-start xs:w-full z-10 md:px-32">
              <Link href="/sign-in">
               <button className="mt-4 px-4 py-2 text-sm bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50">
                 Get Started
