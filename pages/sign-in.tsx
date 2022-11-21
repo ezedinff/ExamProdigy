@@ -1,4 +1,4 @@
-import { Auth, Card, Typography, Space, Button, Icon } from '@supabase/ui'
+import { Auth, Card, Typography, Space } from '@supabase/ui'
 import supabase from '../lib/supabaseClient';
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router';

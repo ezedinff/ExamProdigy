@@ -4,6 +4,58 @@ import { Question } from "../../lib/types";
 
 const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+
+type QuestionOptionProps = {
+  isMultiple: boolean;
+  option: string;
+  index: number;
+  selected: boolean;
+  onSelect: (ans: string) => void;
+};
+
+const QuestionOption: React.FC<QuestionOptionProps> = React.memo(
+  ({ option, index, selected, onSelect, isMultiple }) => {
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    const handleClick = () => {
+      onSelect(option);
+    };
+
+    return (
+      <li
+        className={
+          "flex space-x-2 p-2 border-2 text-gray-300 border-gray-300 rounded-md cursor-pointer my-2 " +
+          (selected ? "border-teal-500" : "")
+        }
+        onClick={handleClick}
+      >
+        <input
+          className="hidden"
+          type={isMultiple ? "checkbox" : "radio"}
+          name="option"
+          id={`option-${index}`}
+          checked={selected}
+          onChange={handleClick}
+          ref={inputRef}
+        />
+        <span
+          className={
+            "inline-block w-6 h-6 text-center rounded-md " +
+            (selected ? "bg-teal-500 text-white bold" : "")
+          }
+        >
+          {alphabet[index]}
+        </span>
+        <label className="ml-2" htmlFor={`option-${index}`}>
+          {option}
+        </label>
+      </li>
+    );
+  }
+);
+
+QuestionOption.displayName = "QuestionOption";
+
 interface QuestionProps {
   index: number;
   question: Question;
@@ -56,7 +108,7 @@ const QuestionCard: React.FC<QuestionProps> = ({
       console.log(answers);
       setSelectedAns(answers);
     }
-  }, [answers]);
+  }, [selectedAns, answers]);
 
   return (
     <div className="flex flex-col p-4 md:px-8 md:w-full md:mx-8 self-start justify-center border-dashed border-2 border-gray-300 rounded-md shadow-md">
@@ -134,53 +186,6 @@ const QuestionCard: React.FC<QuestionProps> = ({
   );
 };
 
-type QuestionOptionProps = {
-  isMultiple: boolean;
-  option: string;
-  index: number;
-  selected: boolean;
-  onSelect: (ans: string) => void;
-};
-
-const QuestionOption: React.FC<QuestionOptionProps> = React.memo(
-  ({ option, index, selected, onSelect, isMultiple }) => {
-    const inputRef = React.useRef<HTMLInputElement>(null);
-
-    const handleClick = () => {
-      onSelect(option);
-    };
-
-    return (
-      <li
-        className={
-          "flex space-x-2 p-2 border-2 text-gray-300 border-gray-300 rounded-md cursor-pointer my-2 " +
-          (selected ? "border-teal-500" : "")
-        }
-        onClick={handleClick}
-      >
-        <input
-          className="hidden"
-          type={isMultiple ? "checkbox" : "radio"}
-          name="option"
-          id={`option-${index}`}
-          checked={selected}
-          onChange={handleClick}
-          ref={inputRef}
-        />
-        <span
-          className={
-            "inline-block w-6 h-6 text-center rounded-md " +
-            (selected ? "bg-teal-500 text-white bold" : "")
-          }
-        >
-          {alphabet[index]}
-        </span>
-        <label className="ml-2" htmlFor={`option-${index}`}>
-          {option}
-        </label>
-      </li>
-    );
-  }
-);
+QuestionCard.displayName = "QuestionCard";
 
 export default QuestionCard;

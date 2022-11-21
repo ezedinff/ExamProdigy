@@ -12,7 +12,7 @@ const HomePage = ({session}: any) => {
       console.log(session);
       router.push('/exams');
     }
-  }, [session]);
+  }, [router, session]);
 
   
   return (

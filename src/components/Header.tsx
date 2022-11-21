@@ -1,8 +1,6 @@
 import { useRef, useState } from "react";
-import { Exam } from "../../lib/types";
 import QuestionTimer from "./QuestionTimer";
-import supabase from "../../lib/supabaseClient";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import Image from "next/image";
 
 interface HeaderProps {
   title: string;
@@ -34,23 +32,21 @@ type LoggedInUserProps = {
 const LoggedInUser: React.FC<LoggedInUserProps> = ({ user }) => {
   const [showMenu, setShowMenu] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const supabaseClient = useSupabaseClient()
-
-  // check when the user clicks outside the menu and close it
-  const handleClickOutside = (event: any) => {
-    document.addEventListener("mousedown", (event) => {
-      // user click on the menu button
-      if (
-        menuButtonRef.current &&
-        menuButtonRef.current.contains(event.target as Node)
-      ) {
-        // setShowMenu(!showMenu);
-      } else {
-        // user click outside the menu
-        setShowMenu(false);
-      }
-    });
-  };
+  // // check when the user clicks outside the menu and close it
+  // const handleClickOutside = (event: any) => {
+  //   document.addEventListener("mousedown", (event) => {
+  //     // user click on the menu button
+  //     if (
+  //       menuButtonRef.current &&
+  //       menuButtonRef.current.contains(event.target as Node)
+  //     ) {
+  //       // setShowMenu(!showMenu);
+  //     } else {
+  //       // user click outside the menu
+  //       setShowMenu(false);
+  //     }
+  //   });
+  // };
 
   return (
     <div className="relative">
@@ -61,7 +57,7 @@ const LoggedInUser: React.FC<LoggedInUserProps> = ({ user }) => {
           onClick={() => setShowMenu(!showMenu)}
           className="flex flex-row items-center justify-center w-10 h-10 rounded-full bg-gray-700 focus:outline-none"
         >
-          <img
+          <Image
             className="w-8 h-8 rounded-full"
             src={user.user.user_metadata.avatar_url}
             alt={user.user.user_metadata.full_name}
