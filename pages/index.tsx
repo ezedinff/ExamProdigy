@@ -5,14 +5,14 @@ import { Suspense, useEffect, useState } from 'react';
 
 
 const HomePage = ({session}: any) => {
-  // const router = useRouter();
+  const router = useRouter();
 
-  // useEffect(() => {
-  //   if (session) {
-  //     console.log(session);
-  //     router.push('/exams');
-  //   }
-  // }, [router, session]);
+  useEffect(() => {
+    if (session) {
+      console.log(session);
+      router.push('/exams');
+    }
+  }, [router, session]);
 
   
   return (
