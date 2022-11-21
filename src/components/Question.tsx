@@ -134,8 +134,9 @@ const QuestionCard: React.FC<QuestionProps> = ({
           </svg>
         </button>
 
-        <div className="flex justify-self-end gap-8 items-center">
-          <h1 className="text-gray-400 font-bold">{`About ${totalQuestions} questions to go`}</h1>
+        <div className="flex justify-self-end gap-4 md:gap-8 items-center">
+          <h1 className="text-gray-400 font-bold hidden md:block">{`About ${totalQuestions - index} questions to go`}</h1>
+          <h1 className="text-gray-400 font-bold md:hidden">{`${index + 1} of ${totalQuestions}`}</h1>
           <button
             className="border border-gray-400 text-gray-400 text-sm py-1 px-2 rounded ml-auto hover:border-teal-500 hover:text-teal-500 animate-pulse"
             onClick={() => showAnswers()}
