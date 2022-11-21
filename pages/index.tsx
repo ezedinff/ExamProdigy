@@ -30,9 +30,9 @@ const HomePage = ({session}: any) => {
             <p className="mt-3 text-2xl break-words md:w-1/2 sm:text-3xl xs:w-full lg:w-3/4 text-gray-300">
               Practice for your exams with our free questions and explanations. The questions are curated from the best sources and are updated regularly.
             </p>
-            <div className="flex justify-start md:w-1/2 sm:text-3xl xs:w-full lg:w-3/4 z-10">
+            <div className="flex justify-start md:w-1/2 xs:w-full lg:w-3/4 z-10">
              <Link href="/sign-in">
-              <button className="mt-4 px-4 py-2 bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50">
+              <button className="mt-4 px-4 py-2 text-sm bg-teal-500 text-white rounded-md hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-opacity-50">
                 Get Started
               </button>
             </Link>

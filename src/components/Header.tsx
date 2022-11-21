@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import QuestionTimer from "./QuestionTimer";
-import Image from "next/image";
 
 interface HeaderProps {
   title: string;
@@ -57,11 +56,11 @@ const LoggedInUser: React.FC<LoggedInUserProps> = ({ user }) => {
           onClick={() => setShowMenu(!showMenu)}
           className="flex flex-row items-center justify-center w-10 h-10 rounded-full bg-gray-700 focus:outline-none"
         >
-          <Image
+          <img
             className="w-8 h-8 rounded-full"
-            loader={({ src }) => src}
             src={user.user.user_metadata.avatar_url}
             alt={user.user.user_metadata.full_name}
+            loading="lazy"
           />
         </button>
         )

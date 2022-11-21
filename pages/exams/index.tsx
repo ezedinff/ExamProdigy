@@ -3,8 +3,6 @@ import { Exam } from "../../lib/types";
 import Header from "../../src/components/Header";
 import useExam from "../../src/hooks/useExam";
 
-import Image from "next/image";
-
 export default function Exams({ session }: any) {
   const { exams } = useExam();
   return (
@@ -29,10 +27,10 @@ type ExamCardProps = {
 const ExamCardImage: React.FC<ExamCardProps> = ({ exam }) => {
   return (
     <div className="flex justify-center items-center h-64 rounded-md pt-8">
-      <Image
+      <img
         className="w-3/4 object-cover rounded-md"
         src={exam.thumbnail}
-        loader={({ src }) => src}
+        loading="lazy"
         alt={exam.name}
       />
     </div>
