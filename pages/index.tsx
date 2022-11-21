@@ -19,7 +19,7 @@ const HomePage = ({session}: any) => {
     <Suspense fallback={<div>Loading...</div>}>
           <div className="flex flex-col min-h-screen h-full w-full overflow-hidden">
       <Head>
-        <title>Home | Personality Test</title>
+        <title>Home | Exam Prep</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex flex-col justify-center w-full flex-1 overflow-hidden scroll-hidden h-full">
