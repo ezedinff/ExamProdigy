@@ -59,6 +59,7 @@ const LoggedInUser: React.FC<LoggedInUserProps> = ({ user }) => {
         >
           <Image
             className="w-8 h-8 rounded-full"
+            loader={({ src }) => src}
             src={user.user.user_metadata.avatar_url}
             alt={user.user.user_metadata.full_name}
           />

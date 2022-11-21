@@ -32,6 +32,7 @@ const ExamCardImage: React.FC<ExamCardProps> = ({ exam }) => {
       <Image
         className="w-3/4 object-cover rounded-md"
         src={exam.thumbnail}
+        loader={({ src }) => src}
         alt={exam.name}
       />
     </div>
