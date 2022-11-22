@@ -1,6 +1,6 @@
 export function Footer() {
     return (
-        <footer className="flex justify-center items-center h-16 border-t border-gray-700 absolute bottom-0 w-full">
+        <footer className="flex justify-center items-center h-16 border-t border-gray-700 relative bottom-0 w-full">
             <a
                 className="flex items-center text-gray-500 text-sm hover:text-teal-500"
                 href="https://ezedinfedlu.com"

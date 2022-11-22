@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { Answer } from "../../lib/types";
 import Explanation from "../../src/components/Explanation";
+import { Footer } from "../../src/components/Footer";
 import Header from "../../src/components/Header";
 import QuestionCard from "../../src/components/Question";
 import useAnswers from "../../src/hooks/useAnswers";
@@ -81,7 +82,7 @@ export default function Exam({ session }: any) {
   return (
     <>
       <Header title={examTitle} user={session} showTimer={false} />
-      <main className="flex flex-col md:flex-row px-4 md:px-10 my-4 md:pt-24 md:gap-32">
+      <main className="flex flex-col md:flex-row px-4 md:px-10 my-4 md:pt-24 md:gap-32 h-screen">
         {questions && questions.length > 0 && (
           <>
             <div className="flex flex-1 flex-grow-1 flex-col md:justify-center md:self-start my-4">
@@ -106,6 +107,7 @@ export default function Exam({ session }: any) {
           </>
         )}
       </main>
+      <Footer/>
     </>
   );
 }
