@@ -7,8 +7,17 @@ const useAnswers = (session: any, examId: string) => {
     const [answers, setAnswers] = useState<Answer[]>([]);
     
     const addAnswer = async (answer: Answer) => {
-        setAnswers([...answers, answer]);
-        await saveAnswers(session, answer.answers, examId, answer.question_id);
+        const answersAreSame = (a: string[], b: string[]) => {
+            if (a.length !== b.length) return false;
+            return a.every((v, i) => v === b[i]);
+        };
+        
+        const index = answers.findIndex((a) => a.question_id === answer.question_id && answersAreSame(a.answers, answer.answers));
+
+        if (index === -1) {
+            setAnswers([...answers, answer]);
+            await saveAnswers(session, answer.answers, examId, answer.question_id);
+        }
     };
 
 
