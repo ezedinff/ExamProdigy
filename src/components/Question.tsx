@@ -69,6 +69,7 @@ interface QuestionProps {
     e: React.FormEvent<EventTarget>,
     ans: string | string[]
   ) => void;
+  showExplanation: () => void;
 }
 
 const QuestionCard: React.FC<QuestionProps> = ({
@@ -78,6 +79,7 @@ const QuestionCard: React.FC<QuestionProps> = ({
   totalQuestions,
   previousCallback,
   nextCallback,
+  showExplanation,
 }) => {
   const [selectedAns, setSelectedAns] = useState<string[]>([]);
 
@@ -96,6 +98,7 @@ const QuestionCard: React.FC<QuestionProps> = ({
   };
 
   const showAnswers = () => {
+    showExplanation();
     setSelectedAns(question.answers.map(ans => ans.trim()));
   };
 

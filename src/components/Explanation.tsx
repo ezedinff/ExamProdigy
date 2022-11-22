@@ -4,11 +4,13 @@ import { mdToHtml } from "../../lib/mdToHtml";
 type ExplanationProps = {
   explanations: string[];
   resources: string[];
+  showExplanation: boolean;
 };
 
 const Explanation: React.FC<ExplanationProps> = ({
   explanations,
   resources,
+  showExplanation,
 }) => {
   const [tab, setTab] = useState("explanation");
   const [contents, setContents] = useState<string[]>([]);
@@ -51,31 +53,35 @@ const Explanation: React.FC<ExplanationProps> = ({
           Resources
         </button>
       </div>
-      <div className="flex flex-col w-full p-4 md:px-2 justify-center rounded-md shadow-md">
-        {tab === "explanation" ? (
-          <div className="flex flex-col">
-            {
-              contents.map((content, index) => (
-                <div key={content} className="text-gray-400 text-md" dangerouslySetInnerHTML={{ __html: content }}></div>
-              ))
-            }
+        {
+          showExplanation && (
+            <div className="flex flex-col w-full p-4 md:px-2 justify-center rounded-md shadow-md">
+            {tab === "explanation" ? (
+              <div className="flex flex-col">
+                {
+                  contents.map((content, index) => (
+                    <div key={content} className="text-gray-400 text-md" dangerouslySetInnerHTML={{ __html: content }}></div>
+                  ))
+                }
+              </div>
+            ) : (
+              <div className="flex flex-col">
+                {resources.map((resource) => (
+                  <a
+                    key={resource}
+                    href={resource}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-blue-500 text-lg"
+                  >
+                    {resource}
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
-        ) : (
-          <div className="flex flex-col">
-            {resources.map((resource) => (
-              <a
-                key={resource}
-                href={resource}
-                target="_blank"
-                rel="noreferrer"
-                className="text-blue-500 text-lg"
-              >
-                {resource}
-              </a>
-            ))}
-          </div>
-        )}
-      </div>
+          )
+        }
     </div>
   );
 };

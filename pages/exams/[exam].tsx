@@ -11,6 +11,7 @@ export default function Exam({ session }: any) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [examTitle, setExamTitle] = useState("");
   const [answers, setAnswers] = useState<any[][]>([]);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const { exam } = router.query;
 
@@ -53,6 +54,7 @@ export default function Exam({ session }: any) {
     } else {
       newAnswers.push([ans]);
     }
+    setShowExplanation(false);
     setAnswers(newAnswers);
     setCurrentQuestion(currentQuestion + 1);
     localStorage.setItem("answers", JSON.stringify(newAnswers));
@@ -68,6 +70,11 @@ export default function Exam({ session }: any) {
     setCurrentQuestion(currentQuestion - 1);
   };
 
+  const handleShowExplanation = () => {
+    setShowExplanation(true);
+  };
+
+
   return (
     <>
       <Header title={examTitle} user={session} showTimer={false} />
@@ -78,6 +85,7 @@ export default function Exam({ session }: any) {
               <QuestionCard
                 key={questions[currentQuestion].id}
                 totalQuestions={questions.length}
+                showExplanation={handleShowExplanation}
                 index={currentQuestion}
                 question={questions[currentQuestion]}
                 nextCallback={handleNext}
@@ -87,6 +95,7 @@ export default function Exam({ session }: any) {
 
             <div className="flex flex-co md:justify-center md:self-start my-4 flex-shrink-0 md:w-1/3">
               <Explanation
+                showExplanation={showExplanation}
                 explanations={questions[currentQuestion].explanation || []}
                 resources={questions[currentQuestion].resources || []}
               />
