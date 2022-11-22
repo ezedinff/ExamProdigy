@@ -63,11 +63,11 @@ interface QuestionProps {
   answers: string[];
   previousCallback: (
     e: React.FormEvent<EventTarget>,
-    ans: string | string[]
+    ans: string[]
   ) => void;
   nextCallback: (
     e: React.FormEvent<EventTarget>,
-    ans: string | string[]
+    ans: string[]
   ) => void;
   showExplanation: () => void;
 }

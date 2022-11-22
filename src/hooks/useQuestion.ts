@@ -20,7 +20,7 @@ const questionsQuery = (examId: string) => gql`
     }
 `;
 
-const useExam = (exam: string) => {
+const useQuestions = (exam: string) => {
     const [questions, setQuestions] = useState<Question[] | null>(null);
     const [examError, setExamError] = useState<Error | null>(null);
     const [examLoading, setExamLoading] = useState<boolean>(true);
@@ -44,4 +44,4 @@ const useExam = (exam: string) => {
 };
 
 
-export default useExam;
+export default useQuestions;

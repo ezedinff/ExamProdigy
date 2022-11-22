@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { Answer } from "../../lib/types";
 import Explanation from "../../src/components/Explanation";
 import Header from "../../src/components/Header";
 import QuestionCard from "../../src/components/Question";
+import useAnswers from "../../src/hooks/useAnswers";
 import useExam from "../../src/hooks/useExam";
 import useQuestion from "../../src/hooks/useQuestion";
 
@@ -10,8 +12,9 @@ export default function Exam({ session }: any) {
   const router = useRouter();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [examTitle, setExamTitle] = useState("");
-  const [answers, setAnswers] = useState<any[][]>([]);
+  // const [answers, setAnswers] = useState<any[][]>([]);
   const [showExplanation, setShowExplanation] = useState(false);
+  const {answers, addAnswer} = useAnswers(session, router.query.exam as string);
 
   const { exam } = router.query;
 
@@ -27,12 +30,12 @@ export default function Exam({ session }: any) {
 
   useEffect(() => {
 
-      if (answers.length === 0) {
-        const answers = localStorage.getItem("answers");
-        if (answers) {
-          setAnswers(JSON.parse(answers));
-        }
-      }
+      // if (answers.length === 0) {
+      //   const answers = localStorage.getItem("answers");
+      //   if (answers) {
+      //     setAnswers(JSON.parse(answers));
+      //   }
+      // }
 
       const currentQuestion = localStorage.getItem("currentQuestion");
       if (currentQuestion) {
@@ -44,20 +47,20 @@ export default function Exam({ session }: any) {
 
   const handleNext = (
     e: React.FormEvent<EventTarget>,
-    ans: string | string[]
+    ans: string[]
   ) => {
     e.preventDefault();
     console.log(ans);
-    const newAnswers = [...answers];
-    if (newAnswers[currentQuestion]) {
-      newAnswers[currentQuestion] = [ans];
-    } else {
-      newAnswers.push([ans]);
+    if (questions) {
+      const answer: Answer = {
+        user_id: session.user.id,
+        question_id: questions[currentQuestion].id,
+        exam_id: exam as string,
+        answers: ans,
+      }
+      addAnswer(answer);
     }
-    setShowExplanation(false);
-    setAnswers(newAnswers);
     setCurrentQuestion(currentQuestion + 1);
-    localStorage.setItem("answers", JSON.stringify(newAnswers));
     localStorage.setItem("currentQuestion", (currentQuestion + 1).toString());
   };
 
@@ -89,7 +92,7 @@ export default function Exam({ session }: any) {
                 index={currentQuestion}
                 question={questions[currentQuestion]}
                 nextCallback={handleNext}
-                previousCallback={handlePrevious} answers={answers[currentQuestion] ? (answers[currentQuestion].length > 0 ? answers[currentQuestion][0] : []) : []}
+                previousCallback={handlePrevious} answers={answers.find(ans => ans.question_id === questions[currentQuestion].id)?.answers || []}
               />
             </div>
 

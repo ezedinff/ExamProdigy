@@ -17,6 +17,14 @@ export type Exam = {
     description: string;
 }
 
+export type Answer = {
+  id?: string;
+  question_id: string;
+  exam_id: string;
+  user_id: string;
+  answers: string[];
+}
+
 
 /*
 quiz database schema
