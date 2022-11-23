@@ -82,7 +82,7 @@ export default function Exam({ session }: any) {
   return (
     <>
       <Header title={examTitle} user={session} showTimer={false} />
-      <main className="flex flex-col md:flex-row px-4 md:px-10 my-4 md:pt-24 md:gap-32 h-screen">
+      <main className="flex flex-col md:flex-row px-4 md:px-10 my-4 md:pt-24 md:gap-32">
         {questions && questions.length > 0 && (
           <>
             <div className="flex flex-1 flex-grow-1 flex-col md:justify-center md:self-start my-4">
