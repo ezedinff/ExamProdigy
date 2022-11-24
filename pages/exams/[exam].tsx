@@ -88,8 +88,8 @@ export default function Exam({ session }: any) {
           </div>
         ) : nextQuestionError ? (
           <div className="flex justify-center items-center w-full h-full">
-            <h1 className="text-2xl font-bold text-gray-600">
-              {nextQuestionError.message}
+            <h1 className="text-2xl font-bold text-gray-600 border-1 border-teal-500 p-4 rounded-md">
+              Go back and open the exam again
             </h1>
           </div>
         ) : (
