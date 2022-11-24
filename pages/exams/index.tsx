@@ -9,7 +9,7 @@ export default function Exams({ session }: any) {
   return (
     <>
       <Header title="Exams" user={session} showTimer={false} />
-      <main className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 p-4 md:p-8">
+      <main className="mt-8 grid grid-cols-1 md:grid-cols-4 gap-4 p-4 md:p-8 min-h-screen">
         {exams &&
           exams.map((exam: Exam) => <ExamCard key={exam.id} exam={exam} />)}
       </main>

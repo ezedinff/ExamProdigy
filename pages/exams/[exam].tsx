@@ -81,7 +81,7 @@ export default function Exam({ session }: any) {
   return (
     <>
       <Header title={examTitle} user={session} showTimer={false} />
-      <main className="flex flex-col md:flex-row px-4 md:px-10 my-4 md:pt-24 md:gap-32">
+      <main className="flex flex-col md:flex-row px-4 md:px-10 my-4 md:pt-24 md:gap-32 min-h-screen">
         {nextQuestionLoading ? (
           <div className="flex justify-center items-center w-full h-full">
             <div className="loader"></div>

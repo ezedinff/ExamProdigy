@@ -16,11 +16,9 @@ export const saveAnswers = async (
     },
   ]);
   if (error) {
-    console.log(error);
     return false;
   }
   if (data) {
-    console.log(data);
     return true;
   }
   return false;
@@ -36,7 +34,6 @@ export const getUserAnswers = async (session: any, examId: string): Promise<Answ
     return false;
   }
   if (data && data.length > 0) {
-    console.log(data);
     return data.map((answer) => {
         return {
             id: answer.id,
